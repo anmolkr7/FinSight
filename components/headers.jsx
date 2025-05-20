@@ -3,7 +3,7 @@ import { SignedIn, SignedOut, SignInButton, UserButton,SignUpButton } from '@cle
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from './ui/button'
-import { LayoutDashboard } from 'lucide-react'
+import { LayoutDashboard, PenBox } from 'lucide-react'
 const Header = () => {
   return (
     <div className='fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b'> 
@@ -17,12 +17,18 @@ const Header = () => {
         className="h-12 w-auto object-contain"
         />
       </Link>
-        <div>
+        <div className='flex items-center space-x-4'>
           <SignedIn>
-            <Link href={"/dashboard"}>
+            <Link href={"/dashboard"} className='text-gray-600 hover:text-blue-600 flex items-center gap-2'>
             < Button varaint="outline">
-              <LayoutDashboard/>
-              <span>Dashboard</span>
+              <LayoutDashboard size={18}/>
+              <span className='hidden md:inline'>Dashboard</span>
+            </Button>
+            </Link>
+            <Link href={"/transactions/create"}>
+            < Button  className="flex items-center gap-2">
+              <PenBox size={18}/>
+              <span className='hidden md:inline'>Add Transaction</span>
             </Button>
             </Link>
           </SignedIn>
@@ -33,7 +39,11 @@ const Header = () => {
             </SignInButton>
         </SignedOut>
         <SignedIn>
-            <UserButton />
+            <UserButton appearance={{
+              elements:{
+                avatarBox: "h-10 w-10",
+              }
+            }}/>
         </SignedIn>
         </div>
         </nav>
