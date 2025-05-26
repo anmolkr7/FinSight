@@ -15,6 +15,9 @@ import { Input } from "./ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
+import useFetch from "@/hooks/use-fetch";
+import { createAccount } from "@/actions/dashboard";
+import { Loader2 } from "lucide-react";
 
 const CreateAccountDrawer = ({children}) => {
     const [open,setOpen]=useState(false);
@@ -28,6 +31,19 @@ const CreateAccountDrawer = ({children}) => {
             isDefault: false,
         },
     })
+
+
+    const{data:newAccount,
+        error,
+        fn:createAccountfn,
+        loading:createAccountLoading
+    }=useFetch(createAccount)
+
+    const onSubmit = async (data) => {
+        await createAccountfn(data);
+    }
+
+
   return (
     <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>{children}</DrawerTrigger>
@@ -36,7 +52,7 @@ const CreateAccountDrawer = ({children}) => {
                 <DrawerTitle>Create New Account</DrawerTitle>
             </DrawerHeader>
             <div className="px-4 pb-4">
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
 
 
                     <div className="space-y-2">
@@ -92,14 +108,17 @@ const CreateAccountDrawer = ({children}) => {
                     </div>
 
 
-                    <div className="flex items-center justify-between gap-2 mt-4">
+                    <div className="flex gap-4 pt-4" >
                         <DrawerClose asChild>
                             <Button type="button" variant="outline" className="flex-1">
                                 Cancel
                             </Button>
                         </DrawerClose>
-                        <Button type="submit" className="flex-1">
-                            Create Account
+                        <Button type="submit" className="flex-1" disabled={createAccountLoading}>
+                            {createAccountLoading ?(<><Loader2 className="mr-2 h-4 w-4 animate-spin"/>
+                            Creating...
+                            </>
+                        ): ("Create Account")}
                         </Button>
                     </div>
                 </form>
