@@ -23,7 +23,7 @@ const TransactionTable = ({transactions}) => {
         field:"date",
         direction: "desc"
     });
-
+    // console.log(selectedIds)
     const filteredAndSortedTransactions=transactions;
     const handleSort=(field)=>{
         setSortConfig(current=>({
@@ -33,6 +33,18 @@ const TransactionTable = ({transactions}) => {
         }))
     }
 
+    const handleSelect=(id)=>{
+        //if already in list then apart from that id remove everything or add it to the list
+        setselectedIds(current=>current.includes(id)?current.filter(item=>item!=id):[...current,id]); 
+    }
+
+    const handleSelectAll = () => {
+    setselectedIds((current) =>
+      current.length === filteredAndSortedTransactions.length
+        ? []
+        : filteredAndSortedTransactions.map((t) => t.id)
+    );
+  };
   return (
     <div className='space-y-4'> 
         {/* Filters */}
@@ -45,7 +57,12 @@ const TransactionTable = ({transactions}) => {
             <TableHeader>
                 <TableRow>
                 <TableHead className="w-[50px]">
-                    <Checkbox/>
+                    <Checkbox onCheckedChange={handleSelectAll}
+                    checked={
+                        selectedIds.length===filteredAndSortedTransactions.length
+                        && filteredAndSortedTransactions.length>0
+                    }
+                    />
                 </TableHead>
                 <TableHead 
                 className="cursor-pointer"
@@ -103,7 +120,9 @@ const TransactionTable = ({transactions}) => {
                     filteredAndSortedTransactions.map((transaction)=>(
                         <TableRow key={transaction.id}>
                         <TableCell>
-                            <Checkbox/>
+                            <Checkbox onCheckedChange={()=>handleSelect(transaction.id)}
+                            checked={selectedIds.includes(transaction.id)}
+                            />
                         </TableCell>
                         <TableCell>{format(new Date(transaction.date),"PP")}</TableCell>
                         <TableCell>{transaction.description}</TableCell>
