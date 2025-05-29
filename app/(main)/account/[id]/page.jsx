@@ -3,9 +3,11 @@ import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react'
 import TransactionTable from '../_components/transaction-table';
 import { BarLoader } from 'react-spinners';
+import AccountChart from '../_components/account-chart';
 
 const AccountsPage =async ({params}) => {
-    const accountData=await getAccountWithTransactions(params.id);
+    const resolvedParams = await params;
+    const accountData=await getAccountWithTransactions(resolvedParams.id);
     if(!accountData){
         notFound();
     }
@@ -26,7 +28,17 @@ const AccountsPage =async ({params}) => {
                     <p className='text-sm text-muted-foreground'>{account._count.transactions}Transactions</p>
                 </div>
             </div>
+
+
             {/* Chart Section */}
+            <Suspense
+                fallback={<BarLoader className="mt-4" width={"100%"} color="#9333ea" />}
+            >
+                <AccountChart transactions={transactions} />
+            </Suspense>
+
+
+
             {/* Transaction Table */}
             <Suspense fallback={<BarLoader className='mt-4' width={"100%"} color='#9333ea' />}>
                 <TransactionTable transactions={transactions} />
