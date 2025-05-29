@@ -155,22 +155,25 @@ initialData=null
                         {account.name} (${parseFloat(account.balance).toFixed(2)})
                         </SelectItem>
                     ))}
-                    <CreateAccountDrawer>
-                        <Button
-                        variant="ghost"
-                        className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
-                        >
-                        Create Account
-                        </Button>
-                    </CreateAccountDrawer>
+                    
                     </SelectContent>
                 </Select>
+                
                 {errors.accountId && (
                     <p className="text-sm text-red-500">{errors.accountId.message}</p>
                 )}
                 </div>
             </div>
-
+            <div className="mt-4 flex justify-start">
+                    <CreateAccountDrawer>
+                        <Button
+                        variant="ghost"
+                        className="relative flex cursor-default select-none items-center rounded-sm py-1.5  pr-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
+                        >
+                        Create Account
+                        </Button>
+                    </CreateAccountDrawer>
+            </div>
 
             {/* Category */}
             <div className="space-y-2">
