@@ -77,4 +77,37 @@ To contribute:
    ```bash
    git clone https://github.com/your-username/finsight.git
    cd finsight
+3.Create a new branch
+Always work in a separate branch for your changes:
+```bash
+git checkout -b feat/your-feature-name
+```
+4.Make your changes
+Implement your feature or fix. Run the following commands to ensure code quality:
+```bash
+npm run lint
+npm run format
+```
+5.Commit your changes
+Stage and commit your code with a meaningful message:
+```bash
+git add .
+git commit -m "feat: add your-feature-description"
+```
+6.Push your branch to GitHub
+Push your local branch to your remote fork:
+```bash
+git push origin feat/your-feature-name
+```
+6.Open a Pull Request
+Go to your forked repo on GitHub and click "Compare & pull request". Fill in a clear title and description, and submit your PR to the original repository’s main branch.
+
+✅ Contribution Guidelines
+Follow the project's code style and structure.
+Keep pull requests focused and concise.
+Include tests or screenshots where applicable.
+Use descriptive branch and commit names.
+Make sure your code passes lint and format checks.
+Thank you for contributing to FinSight! 🚀
+ 
 
