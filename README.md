@@ -102,12 +102,17 @@ git push origin feat/your-feature-name
 6.Open a Pull Request
 Go to your forked repo on GitHub and click "Compare & pull request". Fill in a clear title and description, and submit your PR to the original repository’s main branch.
 
-✅ Contribution Guidelines
-Follow the project's code style and structure.
-Keep pull requests focused and concise.
-Include tests or screenshots where applicable.
-Use descriptive branch and commit names.
-Make sure your code passes lint and format checks.
+✅Contribution Guidelines
+# Follow the project's code style and structure.
+# Keep pull requests focused and concise.
+# Include tests or screenshots where applicable.
+# Use descriptive branch and commit names.
+# Make sure your code passes lint and format checks.
 Thank you for contributing to FinSight! 🚀
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+
  
 
