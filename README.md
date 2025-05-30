@@ -38,3 +38,43 @@ cp .env.example .env.local
 
 # Run the development server
 npm run dev
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# Clerk
+CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_FRONTEND_API=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up 
+```
+
+## 📦 Scripts
+FinSight includes several npm scripts to streamline development, testing, and deployment:
+
+| Command             | Description                                                  |
+|---------------------|--------------------------------------------------------------|
+| `npm run dev`       | Launches the development server on `localhost:3000`. Hot-reloads on file changes. |
+| `npm run build`     | Compiles the application for production. Outputs static assets and server code in the `.next` directory. |
+| `npm start`         | Starts the production server. Run `npm run build` first.     |
+| `npm run lint`      | Runs ESLint across the codebase to identify and fix issues.  |
+| `npm run format`    | Applies code formatting using Prettier (if configured).      |
+
+These scripts help ensure consistency across local development, CI pipelines, and deployment environments.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community to improve and extend **FinSight**!
+
+To contribute:
+
+1. **Fork** the repository on GitHub.
+2. **Clone** your fork locally:
+   ```bash
+   git clone https://github.com/your-username/finsight.git
+   cd finsight
+
